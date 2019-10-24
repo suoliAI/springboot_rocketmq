@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="MySQLTables" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <!-- 此处是将Example改名为Criteria 当然 想改成什么都行~    -->
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$" />
+            <!-- 替换后
+            <property name="replaceString" value="Criteria" />
+             -->
+            <property name="replaceString" value="Criteria" />
+        </plugin>
+
+        <!--mapper接口上加入@Mapper注解-->
+        <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin"/>
+
+
+        <!--这个插件主要用来为生成的Java模型类添加序列化接口，并生成serialVersionUID字段；
+            有两个配置项：
+            addGWTInterface：这个是针对GWT的，我们忽略；
+            suppressJavaInterface：这个参数是必须要填的，我们设置为false就可以了；-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+            <property name="suppressJavaInterface" value="false"/>
+        </plugin>
+
+        <!--给java模型生成toString方法-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <!-- 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ -->
+        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameSqlMapperPlugin">-->
+        <!--<property name="searchString" value="Mapper" />-->
+        <!--<property name="replaceString" value="Dao" />-->
+        <!--</plugin>-->
+
+        <!-- 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  -->
+        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameJavaMapperPlugin">-->
+        <!--<property name="searchString" value="Mapper$" />-->
+        <!--<property name="replaceString" value="Dao" />-->
+        <!--</plugin>-->
+
+
+        <!-- 公共设置 -->
+        <commentGenerator>
+            <!-- 是否取消自动生成时的注释 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否取消在注释中加上时间 -->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+
+
+        <!-- 链接数据库的配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/consumer" userId="rmq_consumer" password="rmq_consumer"/>
+
+        <!-- 关于生成实体类的设置 -->
+        <!-- targetPackage 生成代码的目标目录 -->
+        <!-- targetProject 目录所属位置 -->
+        <javaModelGenerator targetPackage="com.gnnt.model" targetProject="src/main/java">
+            <!-- 在targetPackge的基础上根据schema再生成一层package 默认flase -->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 是否在get方法中 对String类型的字段做空的判断 -->
+            <property name="trimStrings" value="true"/>
+            <!-- 是否生成一个包含所有字段的构造器 -->
+            <property name="constructorBased" value="false"/>
+            <!-- 是否创建一个不可变类-->
+            <property name="immutable" value="false"/>
+        </javaModelGenerator>
+
+        <!--关于生成映射文件的设置-->
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="src/main/resources">
+            <!--同上-->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--关于生成dao层的设置-->
+        <javaClientGenerator type="mapper" targetPackage="com.gnnt.mapper" targetProject="src/main/java">
+            <!--同上-->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--需要生成的代码对应的表名-->
+        <!--需要生成的代码对应的表名-->
+        <table tableName="tb_user_balance" domainObjectName="UserBalance">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="tb_transaction_log" domainObjectName="TransactionLog">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

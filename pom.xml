@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.gnnt</groupId>
+    <artifactId>rocketmq</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>rocket_api</module>
+        <module>rocket_producer</module>
+        <module>rocket_consumer</module>
+
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <spring.boot.version>2.2.0.RELEASE</spring.boot.version>
+        <mybatis.spring.boot.version>2.1.0</mybatis.spring.boot.version>
+        <mybatis.generator.version>1.3.6</mybatis.generator.version>
+        <mysql.connector.java.version>5.1.46</mysql.connector.java.version>
+        <rocket.spring.boot.version>2.0.2</rocket.spring.boot.version>
+        <fastjson.verion>1.2.44</fastjson.verion>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.java.version}</version>
+            </dependency>
+
+            <!--roketmq依赖-->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocket.spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.verion}</version>
+            </dependency>
+
+            <!--mybatis以及使用mybatis generator所需依赖-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis.generator.version}</version>
+            </dependency>
+            <!--mybatis以及使用mybatis generator所需依赖-->
+
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>
